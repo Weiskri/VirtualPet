@@ -10,13 +10,20 @@ namespace VirtualPet
     {
         static void Main(string[] args)
         {
-            Rabbit hegelRabbit = new Rabbit("Hegel", "happy", true, true, true, true);
+            Rabbit hegelRabbit = new Rabbit("Hegel", "happy", true, true, true, true); // creating new object
             hegelRabbit.Tick();
-            int userChoice = 0;
+            int userChoice = 0; // this variable stores the user choice for the menu
 
+            // illness allocation (if Hegel is ill)
+            Random r = new Random();
+            List<string> illnessList = new List<string>() { " GI stasis ", " the snuffles ", " overgrown teeth " };
+            int index = r.Next(illnessList.Count);
+            string illness = illnessList[index];
+
+            // initial greeting message (does not repeat)
             Console.WriteLine("Hello, welcome to the virtual pet program.");
 
-            Console.WriteLine("Your rabbit, Hegel, is anxious to interact with you!");
+            Console.WriteLine("Your rabbit, Hegel, wants to interact with you!");
 
             // interactive menu
             do {
@@ -26,10 +33,38 @@ namespace VirtualPet
                 Console.WriteLine(" ((\")(\")");
                 Console.WriteLine(" ");
                 Console.WriteLine("Hegel is " + hegelRabbit.Disposition + ".");
-                Console.WriteLine("It is " + hegelRabbit.IsHungry + " that Hegel is hungry.");
-                Console.WriteLine("It is " + hegelRabbit.IsThirsty + " that Hegel is thirsty.");
-                Console.WriteLine("It is " + hegelRabbit.IsDirty + " that Hegel's cage needs to be cleaned.");
-                Console.WriteLine("It is " + hegelRabbit.IsSick + " that Hegel needs to go to the vet.");
+                if (hegelRabbit.IsHungry == true)
+                {
+                    Console.WriteLine("Hegel is hungry.");
+                }
+                else
+                {
+                    Console.WriteLine("Hegel is not hungry.");
+                }
+                if (hegelRabbit.IsThirsty == true)
+                {
+                    Console.WriteLine("Hegel is thirsty.");
+                }
+                else
+                {
+                    Console.WriteLine("Hegel is not thirsty.");
+                }
+                if (hegelRabbit.IsDirty == true)
+                {
+                    Console.WriteLine("Hegel is living in filth! He needs his cage cleaned.");
+                }
+                else
+                {
+                    Console.WriteLine("Hegel's cage is neat and tidy.");
+                }
+                if (hegelRabbit.IsSick == true)
+                {
+                    Console.WriteLine("Hegel has" + illness + "and needs to go to the vet!");
+                }
+                else
+                {
+                    Console.WriteLine("Hegel is healthy.");
+                }
                 Console.WriteLine();
                 Console.WriteLine("What do you want to do?");
                 Console.WriteLine("To give Hegel some food, enter 1.");
@@ -46,9 +81,8 @@ namespace VirtualPet
                 {
                        
                     case 1: 
-                        hegelRabbit.RefillFood();
+                        Console.WriteLine(hegelRabbit.RefillFood());
                         hegelRabbit.DispositionDetermination();
-                        Console.WriteLine("Hegel is now happily munching on some fresh hay.");
                         Console.WriteLine("Press enter to continue.");
                         Console.ReadLine();
                         Console.Clear();

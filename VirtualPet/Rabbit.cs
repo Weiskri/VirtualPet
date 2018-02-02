@@ -93,10 +93,21 @@ namespace VirtualPet
             return "Hegel is binkying!";
         }
 
-        public void RefillFood()
+        public string RefillFood()
         {
-            isHungry = false;
-            isThirsty = true;
+            List<string> foodList = new List<string>() { "cilantro", "timothy hay", "kale", "banana" };
+            Random r = new Random();
+            int foodIndex = r.Next(foodList.Count);
+            string food = foodList[foodIndex];
+            if ((food == "timothy hay") || (food == "banana")) {
+                isHungry = false;
+                isThirsty = true;
+                return "Hegel ate the " + foodList[foodIndex] + ".";
+            }
+            else
+            {
+                return "Hegel refused the " + foodList[foodIndex] + ".";
+            }
         }
         
         public void RefillWater()
