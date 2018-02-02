@@ -99,7 +99,11 @@ namespace VirtualPet
             Random r = new Random();
             int foodIndex = r.Next(foodList.Count);
             string food = foodList[foodIndex];
-            if ((food == "timothy hay") || (food == "banana")) {
+            if (isSick == true)
+            {
+                return "Hegel won't eat because he's sick.";
+            }
+            else if ((food == "timothy hay") || (food == "banana")) {
                 isHungry = false;
                 isThirsty = true;
                 return "Hegel ate the " + foodList[foodIndex] + ".";
@@ -112,7 +116,16 @@ namespace VirtualPet
         
         public void RefillWater()
         {
-            isThirsty = false;
+            if (isSick == true)
+            {
+                Console.WriteLine("Hegel won't drink because he's sick.");
+            }
+            else
+            {
+                Console.WriteLine("Hegel is drinking some water.");
+                isThirsty = false;
+            }
+            
         }
 
         public string TakeToVet ()
@@ -160,7 +173,7 @@ namespace VirtualPet
             isHungry = boolList[hungryIndex];
             int thirstyIndex = r.Next(boolList.Count);
             isThirsty = boolList[thirstyIndex];
-            if ((isDirty == true) && (isHungry == true) && (isThirsty == true))
+            if ((isDirty == true) && ((isHungry == true)))
             {
                 isSick = true;
             }

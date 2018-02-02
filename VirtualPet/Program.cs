@@ -90,7 +90,6 @@ namespace VirtualPet
                     case 2:
                         hegelRabbit.RefillWater();
                         hegelRabbit.DispositionDetermination();
-                        Console.WriteLine("You refilled Hegel's water.");
                         Console.WriteLine("Press enter to continue.");
                         Console.ReadLine();
                         Console.Clear();
