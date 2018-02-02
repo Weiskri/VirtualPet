@@ -78,8 +78,7 @@ namespace VirtualPet
             if (isDirty == true)
             {
                 isDirty = false;
-                disposition = "happy";
-                return "The cage is clean and your bunny is happy!";
+                return "The cage is clean!";
             }
             else 
             {
@@ -89,14 +88,16 @@ namespace VirtualPet
 
         public string Play ()
         {
-            disposition = "happy";
-            return "Hegel is binkying and is happy!";
+            return "Hegel is binkying!";
         }
 
-        public void RefillFoodAndWater ()
+        public void RefillFood()
         {
-            disposition = "happy";
             isHungry = false;
+        }
+        
+        public void RefillWater()
+        {
             isThirsty = false;
         }
 
@@ -114,16 +115,61 @@ namespace VirtualPet
             }
         }
 
+        public string DispositionDetermination() {
+
+                    
+            if ((isDirty == true) && ((isSick == true)))
+            {
+                disposition = "angry";
+                return "angry";
+            }
+            else if ((isDirty == false) && ((isHungry == false) && (isThirsty == false)))
+            {
+                disposition = "happy";
+                return "happy";
+            }
+            else 
+            {
+                disposition = "grumpy";
+                return "grumpy";
+            }
+        }
+
         public void Tick ()
         {
-            List<string> dispositionList = new List<string>() { "bored", "happy", "unhappy", "angry" };
+            // Some of these values are random when the user opens the app, others are not.
             Random r = new Random();
-            int index = r.Next(dispositionList.Count);
-            disposition = dispositionList[index];
-            isHungry = true;
-            isThirsty = true;
-            isSick = false;
-            isDirty = true;
+            List<bool> boolList = new List<bool>() { true, false };
+            int dirtyIndex = r.Next(boolList.Count);
+            isDirty = boolList[dirtyIndex];
+            int hungryIndex = r.Next(boolList.Count);
+            isHungry = boolList[hungryIndex];
+            int thirstyIndex = r.Next(boolList.Count);
+            isThirsty = boolList[thirstyIndex];
+            if ((isDirty == true) && (isHungry == true) && (isThirsty == true))
+            {
+                isSick = true;
+            }
+            else
+            {
+                isSick = false;
+            }
+
+            // initial disposition
+
+            if ((isDirty == true) && ((isSick == true)))
+            {
+                disposition = "angry";
+            }
+            else if ((isDirty == false) && ((isHungry == false) && (isThirsty == false)))
+            {
+                disposition = "happy";
+            }
+            else
+            {
+                disposition = "grumpy";
+            }
+
         }
     }
 }
