@@ -16,6 +16,7 @@ namespace VirtualPet
         private bool isHungry;
         private int boredomLevel;
         private bool isSick;
+        private bool isDirty;
 
         // properties
 
@@ -55,6 +56,12 @@ namespace VirtualPet
             set { this.isSick = value; }
         }
 
+        public bool IsDirty
+        {
+            get { return this.isDirty; }
+            set { this.isDirty = value; }
+        }
+
         // constructors
 
         public Rabbit ()
@@ -70,6 +77,49 @@ namespace VirtualPet
             this.isHungry = isHungry;
             this.boredomLevel = boredomLevel;
             this.isSick = isSick;
+        }
+
+        // methods
+
+        public string CleanCage ()
+        {
+            if (isDirty == true)
+            {
+                isDirty = false;
+                disposition = "happy";
+                return "The cage is clean and your bunny is happy!";
+            }
+            else 
+            {
+                return "The cage is still clean!";
+            }
+        }
+
+        public string Play ()
+        {
+            disposition = "happy";
+            return "Your bunny is binkying and is happy!";
+        }
+
+        public void RefillFoodAndWater ()
+        {
+            disposition = "happy";
+            isHungry = false;
+            isThirsty = false;
+        }
+
+        public string TakeToVet ()
+        {
+            if (isSick == true)
+            {
+                isSick = false;
+                return "Your bunny was very sick, but is feeling better now.";
+            }
+
+            else
+            {
+                return "Your bunny's checkup went very well.";
+            }
         }
     }
 }
