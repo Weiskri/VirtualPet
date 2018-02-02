@@ -14,7 +14,6 @@ namespace VirtualPet
         private string disposition;
         private bool isThirsty;
         private bool isHungry;
-        private int boredomLevel;
         private bool isSick;
         private bool isDirty;
 
@@ -44,12 +43,6 @@ namespace VirtualPet
             set { this.isHungry = value; }
         }
 
-        public int BoredomLevel
-        {
-            get { return this.boredomLevel; }
-            set { this.boredomLevel = value; }
-        }
-
         public bool IsSick
         {
             get { return this.isSick; }
@@ -69,13 +62,12 @@ namespace VirtualPet
             // default constructor
         }
 
-        public Rabbit (string name, string disposition, bool isThirsty, bool isHungry, int boredomLevel, bool isSick)
+        public Rabbit (string name, string disposition, bool isThirsty, bool isHungry, bool isSick, bool isDirty)
         {
             this.name = name;
             this.disposition = disposition;
             this.isThirsty = isThirsty;
             this.isHungry = isHungry;
-            this.boredomLevel = boredomLevel;
             this.isSick = isSick;
         }
 
@@ -98,7 +90,7 @@ namespace VirtualPet
         public string Play ()
         {
             disposition = "happy";
-            return "Your bunny is binkying and is happy!";
+            return "Hegel is binkying and is happy!";
         }
 
         public void RefillFoodAndWater ()
@@ -113,13 +105,25 @@ namespace VirtualPet
             if (isSick == true)
             {
                 isSick = false;
-                return "Your bunny was very sick, but is feeling better now.";
+                return "Your bunny was very sick, but he's feeling better now.";
             }
 
             else
             {
                 return "Your bunny's checkup went very well.";
             }
+        }
+
+        public void Tick ()
+        {
+            List<string> dispositionList = new List<string>() { "bored", "happy", "unhappy", "angry" };
+            Random r = new Random();
+            int index = r.Next(dispositionList.Count);
+            disposition = dispositionList[index];
+            isHungry = true;
+            isThirsty = true;
+            isSick = false;
+            isDirty = true;
         }
     }
 }
