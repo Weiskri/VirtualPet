@@ -73,6 +73,8 @@ namespace VirtualPet
 
         // methods
 
+
+
         public string CleanCage ()
         {
             if (isDirty == true)
@@ -94,6 +96,7 @@ namespace VirtualPet
         public void RefillFood()
         {
             isHungry = false;
+            isThirsty = true;
         }
         
         public void RefillWater()
