@@ -90,7 +90,14 @@ namespace VirtualPet
 
         public string Play ()
         {
-            return "Hegel is binkying!";
+            if ((disposition == "angry") || (disposition == "grumpy"))
+            {
+                return "Hegel does not want to play. He thumped.";
+            }
+            else {
+                isHungry = true;
+                return "Hegel is happy and binkying!";
+            }
         }
 
         public string RefillFood()
@@ -110,7 +117,7 @@ namespace VirtualPet
             }
             else
             {
-                return "Hegel refused the " + foodList[foodIndex] + ".";
+                return "Hegel refused the " + foodList[foodIndex] + " and thumped.";
             }
         }
         

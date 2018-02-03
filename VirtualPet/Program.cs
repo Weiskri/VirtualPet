@@ -119,7 +119,14 @@ namespace VirtualPet
                 
 
             } while (userChoice != 6);
+
+            if ((hegelRabbit.Disposition == "grumpy") || (hegelRabbit.Disposition == "unhappy"))
+            {
+                Console.WriteLine("Hegel bit you for not taking care of him properly.");
+            }
+            else { 
             Console.WriteLine("Hegel is sad that you don't want to play with him anymore.");
+            }
 
         }
     }
