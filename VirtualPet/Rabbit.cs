@@ -113,6 +113,7 @@ namespace VirtualPet
             else if ((food == "timothy hay") || (food == "banana")) {
                 isHungry = false;
                 isThirsty = true;
+                isDirty = true;
                 return "Hegel ate the " + foodList[foodIndex] + ".";
             }
             else
@@ -169,7 +170,7 @@ namespace VirtualPet
             }
         }
 
-        public void Tick ()
+        public void Tick () // runs when the user opens the app initially
         {
             // Some of these values are random when the user opens the app, others are not.
             Random r = new Random();
